@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table Generator</title>
+    <style>
+        .parent
+        {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .child
+        {
+            width: 550px;
+            border: 5px double black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #heading {
+            color: chocolate;
+            text-decoration: underline;
+            animation: hello 3 1s;
+        }
+
+        @keyframes hello
+        {
+            20%
+            {
+                color: black;
+            }
+            40%
+            {
+                color: blueviolet;
+            }
+            60%
+            {
+                color: red;
+            }
+            80%
+            {
+                color: blue;
+            }
+        }
+
+        #btn {
+            width: 80px;
+            background-color: lightgreen;
+            color: brown;
+            font-weight: 700;
+            border-radius: 8px;
+        }
+
+        #res {
+            width: 80px;
+            background-color: lightcoral;
+            color: lightgreen;
+            font-weight: 700;
+            border-radius: 8px;
+        }
+
+        #out {
+            text-align: left;
+            margin-left: 30%;
+        }
+
+        #inp1
+        {
+            text-align: center;
+            border: 2px dotted black;
+            border-radius: 5px;
+        }
+
+        #inp2
+        {
+            text-align: center;
+            border: 2px dotted black;
+            border-radius: 5px;
+        }
+        label
+        {
+            font-size: 18px;
+        }
+
+        @media (max-width:465px)
+        {
+            #heading {
+            font-size: 18px;
+            color: chocolate;
+            text-decoration: underline;
+            animation: hello 3 1s;
+        }
+
+        @keyframes hello
+        {
+            20%
+            {
+                color: black;
+            }
+            40%
+            {
+                color: blueviolet;
+            }
+            60%
+            {
+                color: red;
+            }
+            80%
+            {
+                color: blue;
+            }
+        }
+
+        input
+        {
+            width: 90px;
+        }
+        label 
+        {
+            font-size: 15px;
+        }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="child">
+            <h1 id="heading">Multiplication Table Generator</h1>
+
+            <table>
+                <tr>
+                    <th><label for="inp1">Which Table You Want</label></th>
+                    <td><input id="inp1" placeholder="Enter the number"></td>
+                </tr>
+                <tr>
+
+                    <th><label for="inp2">Range</label></th>
+                    <td><input id="inp2" placeholder="Enter the number"></td>
+                </tr>
+                <tr>
+                    <th><button id="btn">Get Table</button></th>
+                    <th><button id="res">Reset</button></th>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <h4 id="out"></h4>
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <h3 id="out1"></h3>
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <marquee id="mar" direction="right">Enter only number</marquee>
+                    </th>
+                </tr>
+        </div>
+    </div>
+    <script>
+        let inp1 = document.querySelector("#inp1")
+        let inp2 = document.querySelector("#inp2")
+        let out = document.querySelector("#out")
+        let btn = document.querySelector("#btn")
+        let res = document.querySelector("#res")
+        let mar = document.querySelector("#mar")
+        let out1 = document.querySelector("#out1")
+        btn.addEventListener('click', createTable)
+        function createTable() {
+
+            let inp1Value = inp1.value
+            let inp2Value = inp2.value
+
+            if (inp1Value == "" || inp2Value == "") {
+                out1.innerHTML = "Enter some number"
+                out1.style.color = "red"
+                mar.innerHTML = ""
+            }
+
+
+            else if (isNaN(inp1Value) || isNaN(inp2Value)) {
+                out1.innerHTML = "Enter number only"
+                out1.style.color = "red"
+                mar.innerHTML = ""
+            }
+
+
+            else
+                for (i = 1; i <= inp2Value; i++) {
+                    out.innerHTML += inp1Value + " * " + i + " = " + inp1Value * i
+                    out.innerHTML += "<br>"
+                    out1.innerHTML = "Thank you for using me"
+                    out1.style.color = "green"
+                    mar.innerHTML = "Want another table restart"
+                }
+            
+
+        }
+        res.addEventListener('click', resetValue)
+        function resetValue() {
+            inp1.value = " "
+            inp2.value = " "
+            out1.innerHTML = ""
+            out.innerHTML = ""
+            mar.innerHTML = "Enter only number"
+        }
+    </script>
+    </table>
+</body>
+
+</html>
